@@ -1,8 +1,8 @@
-from flask import Flask, session, escape, redirect, url_for, request
+from flask import Flask, session, escape, redirect, url_for, request, render_template
 
 app = Flask(__name__)
 app.secret_key = "aesudiygfewrygfonwaaegmyfweofywefg"
-
+online_users = []
 
 @app.route('/')
 def index():
@@ -26,6 +26,7 @@ def user():
 def login():
     if request.method == 'POST':
         session['username'] = request.form['username']
+        online_users.append(session['username'])
         return redirect(url_for('index'))
     return '''
         <form method="post">
@@ -36,7 +37,13 @@ def login():
 
 @app.route('/online')
 def online():
-    for 
+    print(session)
+    print(online_users)
+    return 'xD'
+
+@app.route('/calendar')
+def calender():
+    return render_template("calender.html")
 
 if __name__ == '__main__':
     app.run()
