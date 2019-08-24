@@ -1318,6 +1318,7 @@ iframe {
 	position: relative;
 	overflow: hidden;
 	text-align: center;
+	height: 350px;
 }
 .home-pro .services li:nth-child(2) {
 	background: #B13E9A;

@@ -10308,7 +10308,8 @@ p i {
 .uou-block-8d.active .fa, .uou-block-8d:hover .fa {
 	color: #B9429A;
 	border-color: #B9429A;
-	box-shadow: 0px 0px 0px 7px rgba(0, 215, 147, 0.2);
+	box-shadow: 0px 0px 0px 7px rgba(185, 66, 154, 0.2);
+	cursor: pointer;
 }
 .uou-block-8d .fa {
 	font-size: 32px;
