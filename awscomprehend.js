@@ -23,7 +23,7 @@ comprehend.batchDetectKeyPhrases(params, function(err, data) {
 });
 comprehend.batchDetectEntities(params, function(err, data) {
   if (err) console.log(err, err.stack); // an error occurred
-  else     {
+  else     {	
 	  console.log('Entities Detected:');
 
 	  console.log(data.ResultList[0].Entities);       
