@@ -604,7 +604,7 @@ iframe {
 	position: relative;
 }
 .compny-profile .user-info li .stars i {
-	color: #0099ff;
+	color: #B9429A;
 }
 .compny-profile .user-info .followr {
 	position: relative;
@@ -835,14 +835,14 @@ iframe {
 	margin-right: 5px;
 }
 .filter-flower li a:hover {
-	background: #0099ff;
+	background: #B9429A;
 	color: #fff;
-	border: 1px solid #0099ff;
+	border: 1px solid #B9429A;
 }
 .filter-flower li a.active {
-	background: #0099ff;
+	background: #B9429A;
 	color: #fff;
-	border: 1px solid #0099ff;
+	border: 1px solid #B9429A;
 }
 .head {
 	background: #ededed;
@@ -869,9 +869,9 @@ iframe {
 	margin-right: 10px;
 }
 .main-mem .head button:hover {
-	background: #0099ff;
+	background: #B9429A;
 	color: #fff;
-	border-color: #0099ff;
+	border-color: #B9429A;
 }
 .main-mem .head form {
 	position: relative;
@@ -1159,7 +1159,7 @@ iframe {
 	display: inline-block;
 	width: 100%;
 	color: #fff;
-	background: #0099ff;
+	background: #B9429A;
 	padding: 5px 0px;
 	width: 100%;
 	margin-top: 10px;
@@ -1260,7 +1260,7 @@ iframe {
 	transition: all 0.3s;
 }
 .banr-head .login-sec .login-with a:hover {
-	background: #0099ff;
+	background: #B9429A;
 }
 .banr-head .login-sec .uou-tabs .content > div {
 	padding: 0px;
@@ -1277,7 +1277,7 @@ iframe {
 }
 .banr-head .login-sec button {
 	border: none;
-	background: #0099ff;
+	background: #B9429A;
 	border-radius: 30px;
 	padding: 8px 30px;
 	color: #fff;
@@ -1291,7 +1291,7 @@ iframe {
 .banr-head .login-sec .uou-tabs .tabs li a {
 	border: none;
 	padding: 15px 10px;
-	background: #0099ff;
+	background: #B9429A;
 	color: #fff;
 }
 .banr-head .login-sec .uou-tabs .tabs li.active a {
@@ -1308,7 +1308,7 @@ iframe {
 	padding: 0px;
 }
 .home-pro .services li {
-	background: #43b9f6;
+	background: #ED6092;
 	padding: 0px;
 	list-style: none;
 	color: #fff;
@@ -1317,10 +1317,10 @@ iframe {
 	text-align: center;
 }
 .home-pro .services li:nth-child(2) {
-	background: #6686ff;
+	background: #B13E9A;
 }
 .home-pro .services li:nth-child(3) {
-	background: #be78ff;
+	background: #942D9D;
 }
 .home-pro .services li .ser-inn {
 	padding: 75px 13%;
@@ -1445,7 +1445,7 @@ iframe {
 }
 .clients-says span {
 	font-size: 14px;
-	color: #0099ff;
+	color: #B9429A;
 }
 .clients-says .avatar {
 	display: inline-block;
@@ -1482,7 +1482,7 @@ iframe {
 	padding-left: 50px;
 }
 .map-search button:hover {
-	background: #2dabff;
+	background: #CD4D95;
 	color: #fff;
 }
 .search-pro form input {
@@ -1502,7 +1502,7 @@ iframe {
 	color: #fff;
 	font-family: 'Montserrat', sans-serif;
 	padding: 0px 20px;
-	background: #0099ff;
+	background: #B9429A;
 }
 .map-search {
 	position: relative;
@@ -1529,7 +1529,7 @@ iframe {
 	transition: 0.2s ease-in;
 }
 .map-search .map-toggleButton:hover {
-	background: #0099ff;
+	background: #B9429A;
 }
 .map-search .map-toggleButton:hover .fa {
 	color: #fff;
@@ -3073,7 +3073,7 @@ CANVAS PAGE STYLE
 	background: none;
 }
 .banr-head .login-sec .login-with a:hover {
-	background: #0099ff;
+	background: #B9429A;
 }
 .uou-tabs .accordion-link {
 	background: rgba(0,0,0,0.8) !important;
@@ -3081,7 +3081,7 @@ CANVAS PAGE STYLE
 }
 .uou-tabs .accordion-link.active {
 	color: #fff;
-	background: #0099ff !important;
+	background: #B9429A !important;
 }
 .right-top-bnr {
 	float: right;
