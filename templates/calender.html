@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+
+    <link href="{{url_for('static', filename = 'fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
+    <link href="{{url_for('static', filename = 'fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
+
+    <script src="{{url_for('static', filename = 'fullcalendar/packages/core/main.js')}}"></script>
+      <script src="{{url_for('static', filename = 'fullcalendar/packages/interaction/main.js')}}"></script>
+    <script src="{{url_for('static', filename = 'fullcalendar/packages/daygrid/main.js')}}"></script>
+
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          plugins: [ 'dayGrid', 'interaction'], // an array of strings!
+            dateClick: function() {
+    alert('a day has been clicked!');
+  }
+        });
+
+        calendar.render();
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <div id='calendar'></div>
+
+  </body>
+</html>
