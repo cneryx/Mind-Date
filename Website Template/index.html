@@ -86,15 +86,15 @@
                 
                 <!-- REGISTER -->
                 <div class="content">
-                  <div id="register">
-                    <form>
-                      <input type="text" placeholder="Full Name">
-                      <input type="email" placeholder="Email Address">
-                      <input type="text" placeholder="Phone">
-                      <input type="password" placeholder="Password">
-                      <button type="submit">Register</button>
-                    </form>
-                  </div>
+                    <div id="register">
+                        <form action="http://localhost:3000/create" method="get">
+                          <input type="text" placeholder="Full Name" name="name">
+                          <input type="email" placeholder="Email Address" name="email">
+                          <input type="text" placeholder="Phone" name="phone">
+                          <input type="password" placeholder="Password" name="password">
+                          <button type="submit">Register</button>
+                        </form>
+                    </div>
                   
                   <!-- LOGIN -->
                   <div id="log-in" class="active">
