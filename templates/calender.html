@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
+    <head>
     <meta charset='utf-8' />
 
     <link href="{{url_for('static', filename = 'fullcalendar/packages/core/main.css')}}" rel='stylesheet' />
     <link href="{{url_for('static', filename = 'fullcalendar/packages/daygrid/main.css')}}" rel='stylesheet' />
+    <link href="{{url_for('static', filename =  'fullcalendar/packages/timegrid/main.css')}}" rel='stylesheet' />
 
     <script src="{{url_for('static', filename = 'fullcalendar/packages/core/main.js')}}"></script>
-      <script src="{{url_for('static', filename = 'fullcalendar/packages/interaction/main.js')}}"></script>
+    <script src="{{url_for('static', filename = 'fullcalendar/packages/interaction/main.js')}}"></script>
     <script src="{{url_for('static', filename = 'fullcalendar/packages/daygrid/main.js')}}"></script>
+    <script src="{{url_for('static', filename = 'fullcalendar/packages/timegrid/main.js')}}"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var testEvent = document.getElementById('event');
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'dayGrid', 'interaction', 'timeGrid'], // an array of strings!
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'dayGrid', 'interaction'], // an array of strings!
-            dateClick: function() {
-    alert('a day has been clicked!');
-  }
+                droppable: true,
+                dateClick: function() {
+                    alert('a day has been clicked!')
+                },
+                selectable: true
+            });
+
+            calendar.render();
+
+
+            new FullCalendarInteraction.Draggable(testEvent, {
+                eventData: {
+                    title: 'xDDD',
+                    startTime: '12:00',
+                    duration: '01:00'
+                }
+            });
         });
 
-        calendar.render();
-      });
-
     </script>
-  </head>
-  <body>
+    </head>
+    <body>
+        <div id ='event'>AAA|HHH</div>
+        <div id='calendar'></div>
 
-    <div id='calendar'></div>
-
-  </body>
+    </body>
 </html>
