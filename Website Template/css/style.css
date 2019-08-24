@@ -1309,6 +1309,9 @@ iframe {
 }
 .home-pro .services li {
 	background: #ED6092;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
 	padding: 0px;
 	list-style: none;
 	color: #fff;
