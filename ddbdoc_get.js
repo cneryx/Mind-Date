@@ -132,8 +132,8 @@ app.get('/create', function (req, res) {
             'password': { S: password },
             'phone': { N: phone },
             'status': { S: 'please enter' },
-            'keyphrases': {SS: []},
-            'entities': {SS: []}
+            'keyphrases': {SS: ['-']},
+            'entities': {SS: ['-']}
         }
     };
     docClient.putItem(params, function (err, data) {
