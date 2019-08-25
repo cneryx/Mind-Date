@@ -7084,7 +7084,7 @@ p i {
 .uou-block-2b .nav .sf-menu > li > ul li {
 	border-bottom: 1px solid #262626;
 	font-size: 15px;
-	max-width: 130px;
+	max-width: 180px;
 }
 .uou-block-2b .nav .sf-menu > li > ul li:first-child a {
 	border-radius: 3px 3px 0 0;
@@ -7099,7 +7099,7 @@ p i {
 	background: #333333;
 	color: inherit;
 	padding: 6px 15px;
-	max-width: 130px;
+	max-width: 180px;
 	color: #ffffff;
 	font-size: 14px;
 	font-weight: 300 !important;

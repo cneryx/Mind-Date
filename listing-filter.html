@@ -34,21 +34,16 @@
         <nav class="nav">
           <ul class="sf-menu">
             <li class="active"> <a href="listing-filter.html"><i class="fa fa-search"></i></a> </li>
-            <!--li> <a href="index.html">Pages</a>
-              <ul>
-                <li><a href="profile_company.html">Profile Company</a></li>
-                <li><a href="profile_company-no-tabs.html">Profile Company No Tabs</a></li>
-                <li><a href="user-dashboard(connections)(hotkeys-disabled).html">User Dashboard 1</a></li>
-                <li><a href="user-dashboard(connections)(hotkeys-enabled).html">User Dashboard 2</a></li>
-                <li><a href="user-dashboard(followers).html">User Dashboard 3</a></li>
-                <li><a href="user-dashboard(following).html">User Dashboard 4</a></li>         
-              </ul>
-            </li-->
             {{#logged_in}}
-            <li class="active"> <a href="user-profile.html">User Profile</a></li>
+            <li class="active"> <a href="user-profile.html">User Profile</a>
+              <ul>
+                <li><a href="user-profile.html">{{username}}'s Account</a></li>
+                <li><a href="index.html">Logout</a></li>
+              </ul>
+            </li>
             {{/logged_in}}
             {{^logged_in}}
-            <li><a href="index.html">Login</a></li>
+            <li><a href="index.html">Sign Up / Login</a></li>
             {{/logged_in}}
           </ul>
         </nav>
