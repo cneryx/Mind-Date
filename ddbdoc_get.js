@@ -126,9 +126,10 @@ app.get('/create', function (req, res) {
             console.log("Success", data.Item);
             req.session.name = req.query.name;
             req.session.user = req.query.email;
+            res.redirect("user-profile.html");
         }
     });
-    res.send('Success!');
+
 });
 
 app.get('/status', function (req, res) {
@@ -315,7 +316,7 @@ app.get('/explore', function (req, res) {
 
             sort(matches);
             console.log(results);
-
+            res.render('listing-filter.html', {"logged_in": req.session.user, "username": req.session.name, "matches": matches, "results": results})
         });
 
     });
