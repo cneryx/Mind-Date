@@ -29,7 +29,9 @@ app.get('/create', function (req, res) {
     });
     res.send('Success!');
 });
-
+function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+}
 app.get('/status', function (req, res) {
     var comprehend = new AWS.Comprehend();
     keyPhraseList = [];
@@ -50,9 +52,11 @@ app.get('/status', function (req, res) {
 
             var rawKeySet = data.ResultList[0].KeyPhrases;
             //console.log(rawKeySet);
-
-            for (var i = 0; i < rawKeySet.length; i++) {
-                keyPhraseList.push(rawKeySet[i].Text);
+			var KeySetSingle = rawKeySet.filter( onlyUnique );;
+			
+			
+            for (var i = 0; i < KeySetSingle.length; i++) {
+                keyPhraseList.push(KeySetSingle[i].Text);
                 
             }
             console.log(keyPhraseList);
