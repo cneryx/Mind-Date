@@ -47,18 +47,19 @@ app.get('/status', function (req, res) {
         if (err) console.log(err, err.stack); // an error occurred
         else {
             console.log('KeyPhrases Detected:');
-			function onlyUnique(value, index, self) { 
-			return self.indexOf(value) === index;
+			function onlyUnique(val, index, self) { 
+				return self.indexOf(val) === index;
 			}
             var rawKeySet = data.ResultList[0].KeyPhrases;
             //console.log(rawKeySet);
-			var KeySetSingle = rawKeySet.filter( onlyUnique );;
+			var keySetText = [];
 			
-			
-            for (var i = 0; i < KeySetSingle.length; i++) {
-                keyPhraseList.push(KeySetSingle[i].Text);
-                
+            for (var i = 0; i < rawKeySet.length; i++) {
+                keySetText.push(rawKeySet[i].Text);
             }
+			
+			
+			keyPhraseList = keySetText.filter(onlyUnique);
             console.log(keyPhraseList);
             var params2 = {
                 TableName: 'Profiles',
@@ -92,10 +93,11 @@ app.get('/status', function (req, res) {
 			}
             var rawEntitySet = data.ResultList[0].Entities;
             //console.log(rawEntitySet);
-			var entitySetSingle = rawEntitySet.filter(onlyUnique);
-            for (var i = 0; i < entitySetSingle.length; i++) {
-                entityList.push(entitySetSingle[i].Text);
+			var entitySetText = rawEntitySet.filter(onlyUnique);
+            for (var i = 0; i < rawEntitySet.length; i++) {
+                entitySetText.push(rawEntitySet[i].Text);
             }
+			entityList = entitySetText.filter(onlyUnique);
             console.log(entityList);
             var params2 = {
                 TableName: 'Profiles',
