@@ -47,6 +47,13 @@
               </ul>
             </li>
             <li><a href="gui-kit.html">GUI KIT</a></li-->
+            {{#logged_in}}
+            <li class="active"> <a href="user-profile.html">User Profile</a>
+              <ul>
+                <li><a href="index.html">Logout</a></li>
+              </ul>
+            </li>
+            {{/logged_in}}
           </ul>
         </nav>
       </div>
@@ -220,11 +227,11 @@
       <ul class="contact-info has-bg-image contain" data-bg-image="images/footer-map-bg.png">
         <li> <i class="fa fa-map-marker"></i>
           <address>
-          795 Folsom Ave, Suite 600, San Francisco, CA 94107
+          Bahen Centre for Information Technology, Saint George Street, Toronto, ON 
           </address>
         </li>
         <li> <i class="fa fa-phone"></i> <a href="tel:#">(123) 456-7890</a> </li>
-        <li> <i class="fa fa-envelope"></i> <a href="mailto:#">first.last@example.com</a> </li>
+        <li> <i class="fa fa-envelope"></i> <a href="mailto:#">mind.date@hackthe6ix.com</a> </li>
       </ul>
     </div>
   </div>
@@ -233,10 +240,6 @@
 
 <div class="uou-block-4a secondary dark">
   <div class="container">
-    <ul class="links">
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Terms &amp; Conditions</a></li>
-    </ul>
     <p>2019 <a href="#">Mind-Date</a>.</p>
   </div>
 </div>
