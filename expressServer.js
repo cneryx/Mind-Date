@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const port = 5000;
 
-app.use(express.static('templates'));
+app.use(express.static('css'));
 app.set('view engine', 'pug');
-app.set('views', 'templates');
+app.set('views', './');
+
 
 //app.get('/', (req, res) => res.send('Hello World!'));
 
