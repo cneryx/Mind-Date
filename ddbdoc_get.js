@@ -1,8 +1,8 @@
 // Load the SDK for JavaScript
 var AWS = require('aws-sdk');
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = 3000;
 
 
 const session = require('express-session');
@@ -20,7 +20,7 @@ app.set('views', '');
 
 app.use(cookieParser());
 app.use(session({secret: "hackthe8minus2ix"}));
-app.use(express.json()) // for parsing application/json
+app.use(express.json());// for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 //app.get('/', (req, res) => res.send('Hello World!'));
@@ -36,6 +36,15 @@ app.get('/index', function(req, res) {
     console.log(req.session.user);
     res.render('index', {"logged_in": req.session.user})
 });
+
+app.get('/index.html', function(req, res) {
+    console.log(req.session.user);
+    res.render('index', {"logged_in": req.session.user})
+});
+
+app.get('/user-profile.html', function(req, res) {
+    res.render('user-profile', {"logged_in": req.session.user, "username": req.session.name})
+})
 
 app.get('/sessionTest', function(req, res) {
     var out = "";
@@ -60,8 +69,27 @@ app.post('/login', function(req, res) {
     //if (req.query.success) {
     if (req.body.email) {
         req.session.user = req.body.email;
+
+        //Set rest of client info
+        var params = {
+            Key: {
+                "email": {
+                    S: req.session.user
+                },
+
+            },
+            TableName: "Profiles"
+        };
+        docClient.getItem(params, function(err, data) {
+            if (err) {
+                console.log(err, err.stack);
+            } else {
+                req.session.name = data.Item.name.S;
+            }
+        });
     }
-    res.redirect('index');
+
+    res.redirect('/index');
 
     //} else {
     //res.send("Unsuccessful Login.");
@@ -91,6 +119,8 @@ app.get('/create', function (req, res) {
             console.log("Error", err);
         } else {
             console.log("Success", data.Item);
+            req.session.name = req.query.name;
+            req.session.user = req.query.email;
         }
     });
     res.send('Success!');
@@ -199,5 +229,6 @@ AWS.config.update({ region: 'us-east-1' });
 var docClient = new AWS.DynamoDB();
 
 app.get('/:wildcard', function(req, res) {
-    res.render(req.params.wildcard)
+    console.log(req.session);
+    res.render(req.params.wildcard, {"logged_in": req.session.user})
 });

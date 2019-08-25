@@ -44,9 +44,13 @@
                 <li><a href="user-dashboard(following).html">User Dashboard 4</a></li>         
               </ul>
             </li-->
+            {{#logged_in}}
             <li class="active"> <a href="user-profile.html">User Profile</a></li>
+            {{/logged_in}}
+            {{^logged_in}}
             <li><a href="index-register.html">Sign Up</a></li>
             <li><a href="index.html">Login</a></li>
+            {{/logged_in}}
           </ul>
         </nav>
       </div>

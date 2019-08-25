@@ -46,9 +46,13 @@
                 <li><a href="blog-post.html">Blog Post</a></li>                
               </ul>
             </li-->
+            {{#logged_in}}
             <li class="active"> <a href="user-profile.html">User Profile</a></li>
+            {{/logged_in}}
+            {{^logged_in}}
             <li><a href="index-register.html">Sign Up</a></li>
             <li><a href="index.html">Login</a></li>
+            {{/logged_in}}
             <!--li><a href="blog.html">Blog</a></li>
             <li><a href="gui-kit.html">GUI KIT</a></li-->
           </ul>
@@ -59,12 +63,12 @@
   </div>
   <!-- end .uou-block-2b -->
   
-  <div class="compny-profile"> 
+  <div class="compny-profile">
     <!-- SUB Banner -->
     <div class="profile-bnr user-profile-bnr">
       <div class="container">
         <div class="pull-left">
-          <h2>Michael Peterson</h2>
+          <h2>{{username}}</h2>
           <h5>Front-End Developer</h5>
         </div>
         
