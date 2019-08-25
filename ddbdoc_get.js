@@ -164,6 +164,8 @@ app.get('/status', function (req, res) {
             /* more items */
         ]
     };
+    
+    console.log('penis')
     comprehend.batchDetectKeyPhrases(params, function (err, data) {
         if (err) console.log(err, err.stack); // an error occurred
         else {
@@ -201,6 +203,7 @@ app.get('/status', function (req, res) {
             docClient.updateItem(params2, function(err, data) {
                 if(err) console.log(err, err.stack);
                 else    console.log(data);
+                req.session.status = status;
             })
         }	  // successful response
     });
@@ -239,10 +242,12 @@ app.get('/status', function (req, res) {
             docClient.updateItem(params2, function(err, data) {
                 if(err) console.log(err, err.stack);
                 else    console.log(data);
+                req.session.status = status;
             })
         }
     });
-
+    req.session.status = status;
+    res.redirect('/user-profile');
 });
 
 
