@@ -29,17 +29,17 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 
 app.get('/', function(req, res) {
     console.log(req.session.user);
-    res.render('index', {"logged_in": req.session.user, "username": req.session.name})
+    res.render('index', {"logged_in": req.session.user, "username": req.session.name, "status": req.session.status})
 });
 
 app.get('/index', function(req, res) {
     console.log(req.session);
-    res.render('index', {"logged_in": req.session.user, "username": req.session.name})
+    res.render('index', {"logged_in": req.session.user, "username": req.session.name, "status": req.session.status})
 });
 
 app.get('/index.html', function(req, res) {
     console.log(req.session.user);
-    res.render('index', {"logged_in": req.session.user, "username": req.session.name})
+    res.render('index', {"logged_in": req.session.user, "username": req.session.name, "status": req.session.status})
 });
 
 app.get('/user-profile.html', function(req, res) {
@@ -58,7 +58,7 @@ app.get('/user-profile.html', function(req, res) {
    else     req.session.status = (data.Item.status.S);
  });
 	
-	res.render('user-profile', {"logged_in": req.session.user, "username": req.session.name})
+	res.render('user-profile', {"logged_in": req.session.user, "username": req.session.name, "status": req.session.status})
 });
 
 app.get('/sessionTest', function(req, res) {
@@ -100,6 +100,7 @@ app.post('/login', function(req, res) {
                 console.log(err, err.stack);
             } else {
                 req.session.name = data.Item.name.S;
+                req.session.status = data.Item.status.S;
                 res.redirect('/index');
             }
         });
@@ -143,6 +144,7 @@ app.get('/create', function (req, res) {
             console.log("Success", data.Item);
             req.session.name = req.query.name;
             req.session.user = req.query.email;
+            req.session.status = 'please enter';
             res.redirect("user-profile.html");
         }
     });
@@ -349,5 +351,5 @@ var docClient = new AWS.DynamoDB();
 
 app.get('/:wildcard', function(req, res) {
     console.log(req.session);
-    res.render(req.params.wildcard, {"logged_in": req.session.user, "username": req.session.name})
+    res.render(req.params.wildcard, {"logged_in": req.session.user, "username": req.session.name, "status": req.session.status})
 });
