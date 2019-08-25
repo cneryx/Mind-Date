@@ -16,7 +16,7 @@ var docClient = new AWS.DynamoDB();
 var params = {
   Key: {
    "email": {
-	   S:"a@gmail.com"
+	   S:"asodij@gmail.com"
     }, 
 
   }, 
@@ -25,7 +25,8 @@ var params = {
  var input = [];
  docClient.getItem(params, function(err, data) {
    if (err) console.log(err, err.stack); // an error occurred
-   else     input = (data.Item.keyphrases.SS);           // successful response
+   else     input = (data.Item.keyphrases.SS);
+	console.log(input);// successful response
    /*
    data = {
     Item: {
@@ -41,16 +42,31 @@ var params = {
     }
    }
    */
- });
+   var params = {
+  ExpressionAttributeNames: {
+   "#ed": "email", 
+  }, 
+  ExpressionAttributeValues: {
+   ":e": {
+		S: "asodij@gmail.com"
+    }
+  }, 
+  FilterExpression: "#ed <> :e", 
+  TableName: "Profiles"
+ };
+ var db = [[]];
+ var database = [];
+ docClient.scan(params, function(err, data) {
+   if (err) console.log(err, err.stack); // an error occurred
+ else     db = (data);
+//	console.log(data);
+	
+ for(var i = 0; i < db.Items.length; i++){
+	database[i] = db.Items[i].keyphrases.SS;
+	
+ }
+ console.log(database);
 
-database = [
-    ["d"],
-    ["a", "a"],
-    ["b", "b", "c", "c", "d"],
-    ["a"],
-    [],
-    ["a", "b", "c", "a", "a"]
-];
 
 //No weighting, 1 on 1
 
@@ -71,11 +87,15 @@ var findMatches = function(comparator) {
         }
     }
 	matchExcess = comparator.length;
-    return matchPower;
-	return matchExcess;
+    return matchPower+ " excess: "+matchExcess;
+	
 }
 
 for (var i = 0; i < database.length; i++) {
     console.log("Matches at index " + i + ": " + findMatches(database[i]));
 }
+
+ });
+ 
+ });
 
