@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/index', function(req, res) {
-    console.log(req.session.user);
+    console.log(req.session);
     res.render('index', {"logged_in": req.session.user})
 });
 
@@ -85,11 +85,12 @@ app.post('/login', function(req, res) {
                 console.log(err, err.stack);
             } else {
                 req.session.name = data.Item.name.S;
+                res.redirect('/index');
             }
         });
     }
 
-    res.redirect('/index');
+
 
     //} else {
     //res.send("Unsuccessful Login.");
