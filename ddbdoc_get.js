@@ -29,17 +29,17 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 
 app.get('/', function(req, res) {
     console.log(req.session.user);
-    res.render('index', {"logged_in": req.session.user})
+    res.render('index', {"logged_in": req.session.user, "username": req.session.name})
 });
 
 app.get('/index', function(req, res) {
     console.log(req.session);
-    res.render('index', {"logged_in": req.session.user})
+    res.render('index', {"logged_in": req.session.user, "username": req.session.name})
 });
 
 app.get('/index.html', function(req, res) {
     console.log(req.session.user);
-    res.render('index', {"logged_in": req.session.user})
+    res.render('index', {"logged_in": req.session.user, "username": req.session.name})
 });
 
 app.get('/user-profile.html', function(req, res) {
