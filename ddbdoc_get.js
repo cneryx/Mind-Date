@@ -43,8 +43,23 @@ app.get('/index.html', function(req, res) {
 });
 
 app.get('/user-profile.html', function(req, res) {
-    res.render('user-profile', {"logged_in": req.session.user, "username": req.session.name})
-})
+    // gets status from db
+	var params = {
+  Key: {
+   "email": {
+	   S:req.session.user
+    }, 
+
+  }, 
+  TableName: "Profiles"
+ };
+ docClient.getItem(params, function(err, data) {
+   if (err) console.log(err, err.stack); // an error occurred
+   else     req.session.status = (data.Item.status.S);
+ });
+	
+	res.render('user-profile', {"logged_in": req.session.user, "username": req.session.name})
+});
 
 app.get('/sessionTest', function(req, res) {
     var out = "";
