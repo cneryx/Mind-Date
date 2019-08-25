@@ -262,6 +262,9 @@ app.get('/explore', function (req, res) {
         },
         TableName: "Profiles"
     };
+	var matches = [];
+    var excess = [];
+	var firstmatch = [];
     var input = [];
     docClient.getItem(params, function (err, data) {
         if (err) console.log(err, err.stack); // an error occurred
@@ -281,6 +284,7 @@ app.get('/explore', function (req, res) {
         };
         var db = [[]];
         var database = [];
+		var databaseE = [];
         docClient.scan(params, function (err, data) {
             if (err) console.log(err, err.stack); // an error occurred
             else db = (data);
@@ -288,18 +292,18 @@ app.get('/explore', function (req, res) {
 
             for (var i = 0; i < db.Items.length; i++) {
                 database[i] = db.Items[i].keyphrases.SS;
-
+				databaseE[i] = db.Items[i].entities.SS;
             }
             console.log(database);
-
+			console.log(databaseE);
 
             //No weighting, 1 on 1
-            var matches = [];
-            var excess = [];
+            
             var findMatches = function (comparator, index) {
                 //Loop for main input
                 var matchPower = 0;
                 var matchExcess = 0;
+				
                 for (var i = 0; i < input.length; i++) {
                     //Loop for comparator
                     input[i] = input[i].toLowerCase();
@@ -313,14 +317,19 @@ app.get('/explore', function (req, res) {
                     }
                 }
                 matchExcess = comparator.length;
-                matches[index] = matchPower;
+                matches[index] = matchPower + firstmatch[index];
                 excess[index] = matchExcess;
+				firstmatch[index] = matchPower;
                 return matchPower + " excess: " + matchExcess;
             }
 
             for (var i = 0; i < database.length; i++) {
                 console.log("Matches at index " + i + ": " + findMatches(database[i], i));
             }
+			for (var i = 0; i < database.length; i++) {
+                console.log("Matches at index " + i + ": " + findMatches(databaseE[i], i));
+            }
+			console.log(databaseE);
             var results = db.Items;
             function sort(arr) {
                 var n = arr.length;
@@ -337,9 +346,9 @@ app.get('/explore', function (req, res) {
                     results[j + 1] = temp;
                 }
             }
-
+			console.log(matches[6]);
             sort(matches);
-            console.log(results);
+            
             res.render('listing-filter.html', {"logged_in": req.session.user, "username": req.session.name, "matches": matches, "results": results})
         });
 
