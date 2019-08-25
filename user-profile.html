@@ -61,14 +61,22 @@
     <div class="profile-bnr user-profile-bnr">
       <div class="container">
         <div class="pull-left">
+          <!-- if not own page, display other person's name-->
+          <h2>Name</h2>
+          
+          {{#logged_in}}
           <h2>{{username}}</h2>
-          <h5>Front-End Developer</h5>
+          {{/logged_in}}
+          <h5>{{status}}</h5>
         </div>
         
-        <!-- Top Riht Button -->
+        <!-- Top Right Button -->
         <div class="right-top-bnr">
-          <div class="connect"> <a href="#." data-toggle="modal" data-target="#myModal"><i class="fa fa-user-plus"></i> Connect</a> <a href="#."><i class="fa fa-share-alt"></i> Share</a>
-            <div class="bt-ns"> <a href="#."><i class="fa fa-bookmark-o"></i> </a> <a href="#."><i class="fa fa-envelope-o"></i> </a> <a href="#."><i class="fa fa-exclamation"></i> </a> </div>
+          <div class="connect"> 
+            <a href="#." data-toggle="modal" data-target="#myModal"><i class="fa fa-user-plus"></i> Connect</a> 
+            <div class="bt-ns"> 
+              <a href="#."><i class="fa fa-envelope-o"></i> </a>  
+            </div>
           </div>
         </div>
       </div>
