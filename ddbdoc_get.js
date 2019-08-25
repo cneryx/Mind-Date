@@ -93,7 +93,7 @@ app.get('/status', function (req, res) {
 			}
             var rawEntitySet = data.ResultList[0].Entities;
             //console.log(rawEntitySet);
-			var entitySetText = rawEntitySet.filter(onlyUnique);
+			var entitySetText = [];
             for (var i = 0; i < rawEntitySet.length; i++) {
                 entitySetText.push(rawEntitySet[i].Text);
             }
