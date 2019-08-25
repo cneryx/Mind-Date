@@ -5,7 +5,6 @@ const app = express()
 const port = 3000
 
 
-const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const mustacheExpress = require('mustache-express');
@@ -28,7 +27,15 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 
 //app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
-app.get('/', (req, res) => res.render('index', { title: 'Kill me', message: 'ENd me' }));
+app.get('/', function(req, res) {
+    console.log(req.session.user);
+    res.render('index', {"logged_in": req.session.user})
+});
+
+app.get('/index', function(req, res) {
+    console.log(req.session.user);
+    res.render('index', {"logged_in": req.session.user})
+});
 
 app.get('/sessionTest', function(req, res) {
     var out = "";
@@ -51,8 +58,11 @@ app.get('/sessionTest', function(req, res) {
 
 app.post('/login', function(req, res) {
     //if (req.query.success) {
-    req.session.user = req.body.email;
+    if (req.body.email) {
+        req.session.user = req.body.email;
+    }
     res.redirect('index');
+
     //} else {
     //res.send("Unsuccessful Login.");
     //}
