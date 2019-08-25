@@ -7,6 +7,34 @@
     Text: ""}
  */
 
+var params = {
+  Key: {
+   "email": {
+	   S:b@gmail.com
+    }, 
+
+  }, 
+  TableName: "Profiles"
+ };
+ dynamodb.getItem(params, function(err, data) {
+   if (err) console.log(err, err.stack); // an error occurred
+   else     console.log(data);           // successful response
+   /*
+   data = {
+    Item: {
+     "AlbumTitle": {
+       S: "Songs About Life"
+      }, 
+     "Artist": {
+       S: "Acme Band"
+      }, 
+     "SongTitle": {
+       S: "Happy Day"
+      }
+    }
+   }
+   */
+ });
 input = ["a", "b", "c", "a", "a"];
 
 database = [
