@@ -97,7 +97,9 @@ app.post('/login', function(req, res) {
     //}
 });
 
-
+app.get('/logout', function(req, res) {
+    req.session = null;
+})
 
 app.get('/create', function (req, res) {
     var email = req.query.email;
