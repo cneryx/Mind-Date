@@ -29,9 +29,7 @@ app.get('/create', function (req, res) {
     });
     res.send('Success!');
 });
-function onlyUnique(value, index, self) { 
-    return self.indexOf(value) === index;
-}
+
 app.get('/status', function (req, res) {
     var comprehend = new AWS.Comprehend();
     keyPhraseList = [];
@@ -49,16 +47,19 @@ app.get('/status', function (req, res) {
         if (err) console.log(err, err.stack); // an error occurred
         else {
             console.log('KeyPhrases Detected:');
-
+			function onlyUnique(val, index, self) { 
+				return self.indexOf(val) === index;
+			}
             var rawKeySet = data.ResultList[0].KeyPhrases;
             //console.log(rawKeySet);
-			var KeySetSingle = rawKeySet.filter( onlyUnique );;
+			var keySetText = [];
 			
-			
-            for (var i = 0; i < KeySetSingle.length; i++) {
-                keyPhraseList.push(KeySetSingle[i].Text);
-                
+            for (var i = 0; i < rawKeySet.length; i++) {
+                keySetText.push(rawKeySet[i].Text);
             }
+			
+			
+			keyPhraseList = keySetText.filter(onlyUnique);
             console.log(keyPhraseList);
             var params2 = {
                 TableName: 'Profiles',
@@ -87,13 +88,16 @@ app.get('/status', function (req, res) {
         else {
             console.log('Entities Detected:');
             entityList = [];
-
+			function onlyUnique(value, index, self) { 
+			return self.indexOf(value) === index;
+			}
             var rawEntitySet = data.ResultList[0].Entities;
             //console.log(rawEntitySet);
-
+			var entitySetText = [];
             for (var i = 0; i < rawEntitySet.length; i++) {
-                entityList.push(rawEntitySet[i].Text);
+                entitySetText.push(rawEntitySet[i].Text);
             }
+			entityList = entitySetText.filter(onlyUnique);
             console.log(entityList);
             var params2 = {
                 TableName: 'Profiles',
