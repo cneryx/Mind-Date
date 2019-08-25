@@ -1,4 +1,5 @@
-const express = require('express');
+
+/*const express = require('express');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const mustacheExpress = require('mustache-express');
@@ -48,22 +49,13 @@ app.get('/sessionTest', function(req, res) {
 app.post('/login', function(req, res) {
     //if (req.query.success) {
         req.session.user = req.body.email;
-        res.send("Now logged in as " + req.session.user);
+        res.redirect('index');
     //} else {
         //res.send("Unsuccessful Login.");
     //}
 });
 
-app.get('/login', function(req, res) {
-    res.send(
-        "<form method='post'>" +
-        "<input type='text' name='user'>" +
-        "<input type='submit' value='Enter!'>" +
-        "</form>"
-    )
-});
-
 app.get('/:wildcard', function(req, res) {
     res.render(req.params.wildcard)
 });
-
+*/
