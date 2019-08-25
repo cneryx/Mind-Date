@@ -98,7 +98,9 @@ app.post('/login', function(req, res) {
 });
 
 app.get('/logout', function(req, res) {
-    req.session = null;
+    req.session.destroy();
+
+    res.redirect('index');
 })
 
 app.get('/create', function (req, res) {
@@ -233,5 +235,5 @@ var docClient = new AWS.DynamoDB();
 
 app.get('/:wildcard', function(req, res) {
     console.log(req.session);
-    res.render(req.params.wildcard, {"logged_in": req.session.user})
+    res.render(req.params.wildcard, {"logged_in": req.session.user, "username": req.session.name})
 });
