@@ -77,7 +77,7 @@ head
                                 // REGISTER
                                 .content
                                     #register
-                                        form(action='http://localhost:3000/create' method='get')
+                                        form(action='/create' method='get')
                                             input(type='text' placeholder='Full Name' name='name')
                                             input(type='email' placeholder='Email Address' name='email')
                                             input(type='text' placeholder='Phone' name='phone')
@@ -91,6 +91,7 @@ head
                                             button(type='submit') Login
                                             .forget
                                                 | Forgot your password?
+                                                |
                                                 a(href='#.') Click Here
                                     #forget
                                         form
