@@ -47,12 +47,16 @@ app.get('/status', function (req, res) {
         if (err) console.log(err, err.stack); // an error occurred
         else {
             console.log('KeyPhrases Detected:');
-
+			function onlyUnique(value, index, self) { 
+			return self.indexOf(value) === index;
+			}
             var rawKeySet = data.ResultList[0].KeyPhrases;
             //console.log(rawKeySet);
-
-            for (var i = 0; i < rawKeySet.length; i++) {
-                keyPhraseList.push(rawKeySet[i].Text);
+			var KeySetSingle = rawKeySet.filter( onlyUnique );;
+			
+			
+            for (var i = 0; i < KeySetSingle.length; i++) {
+                keyPhraseList.push(KeySetSingle[i].Text);
                 
             }
             console.log(keyPhraseList);
@@ -83,12 +87,14 @@ app.get('/status', function (req, res) {
         else {
             console.log('Entities Detected:');
             entityList = [];
-
+			function onlyUnique(value, index, self) { 
+			return self.indexOf(value) === index;
+			}
             var rawEntitySet = data.ResultList[0].Entities;
             //console.log(rawEntitySet);
-
-            for (var i = 0; i < rawEntitySet.length; i++) {
-                entityList.push(rawEntitySet[i].Text);
+			var entitySetSingle = rawEntitySet.filter(onlyUnique);
+            for (var i = 0; i < entitySetSingle.length; i++) {
+                entityList.push(entitySetSingle[i].Text);
             }
             console.log(entityList);
             var params2 = {
