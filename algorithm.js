@@ -6,19 +6,26 @@
     {Type:"",
     Text: ""}
  */
+ 
+ var AWS = require('aws-sdk');
+ AWS.config.loadFromPath('./config.json');
+AWS.config.update({region: 'us-east-1'});
+var docClient = new AWS.DynamoDB();
+
 
 var params = {
   Key: {
    "email": {
-	   S:b@gmail.com
+	   S:"a@gmail.com"
     }, 
 
   }, 
   TableName: "Profiles"
  };
- dynamodb.getItem(params, function(err, data) {
+ var input = [];
+ docClient.getItem(params, function(err, data) {
    if (err) console.log(err, err.stack); // an error occurred
-   else     console.log(data);           // successful response
+   else     input = (data.Item.keyphrases.SS);           // successful response
    /*
    data = {
     Item: {
@@ -35,7 +42,6 @@ var params = {
    }
    */
  });
-input = ["a", "b", "c", "a", "a"];
 
 database = [
     ["d"],
@@ -51,6 +57,7 @@ database = [
 var findMatches = function(comparator) {
 //Loop for main input
     var matchPower = 0;
+	var matchExcess = 0;
     for (var i = 0; i < input.length; i++) {
         //Loop for comparator
         input[i] = input[i].toLowerCase();
@@ -63,7 +70,9 @@ var findMatches = function(comparator) {
             }
         }
     }
+	matchExcess = comparator.length;
     return matchPower;
+	return matchExcess;
 }
 
 for (var i = 0; i < database.length; i++) {
